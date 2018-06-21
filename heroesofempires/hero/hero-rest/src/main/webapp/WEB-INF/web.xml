@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app>
+    <module-name>rest</module-name>
+    
+  <context-param>
+      <param-name>resteasy.role.based.security</param-name>
+      <param-value>true</param-value>
+   </context-param>    
+    
+<!--    
+    <security-constraint>
+        <web-resource-collection>
+            <url-pattern>/hero</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>......</role-name>
+        </auth-constraint>
+    </security-constraint>
+-->
+    <login-config>
+        <!-- Set authorization method to KEYCLOAK instead of BASIC --> 
+        <auth-method>KEYCLOAK</auth-method>
+        <realm-name>heroesofempires</realm-name>
+    </login-config>
+</web-app>

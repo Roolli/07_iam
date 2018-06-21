@@ -1,0 +1,29 @@
+<button type="button" onclick="login()">LOGIN</button>
+<script>
+var token;
+function token() {
+  token = this.response["access_token"];
+  console.log(token);
+    var oReq = new XMLHttpRequest();
+    oReq.addEventListener("load", reqListener);
+    oReq.open("GET", "http://localhost:8080/localization/lang");
+    oReq.setRequestHeader('Authorization', 'Bearer ' + token);
+    oReq.setRequestHeader('Content-type', 'multipart/form-data'); 
+    oReq.send();
+}
+
+
+function login(){
+    oReq = new XMLHttpRequest();
+    oReq.addEventListener("load", token);
+    oReq.responseType="json";
+    oReq.open("POST", "https://iam.drhealth.cloud:8443/auth/realms/demo/protocol/openid-connect/token");
+    oReq.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); 
+    oReq.send("username=krisztian&password=krisztian&grant_type=password&client_id=oe");
+}
+    
+function reqListener () {
+    console.log(this.response);
+}
+
+</script>

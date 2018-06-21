@@ -1,0 +1,55 @@
+<!DOCTYPE html">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Apache2 Ubuntu Default Page: It works</title>
+    <script>
+            var token;
+            var tokenType;
+            function reqListener () {
+                        token = this.response["access_token"];             
+                        tokenType = this.response["token_type"];       
+console.log("TOKEN:"+token);      
+           }
+
+function get(name){
+   if(name=(new RegExp('[?&]'+encodeURIComponent(name)+'=([^&]*)')).exec(location.search))
+	console.log("PARAM:"+name);
+	
+      return decodeURIComponent(name[1]);
+}
+
+function Login(){
+           var oReq = new XMLHttpRequest();
+           oReq.addEventListener("load", reqListener);
+           oReq.open("POST", "http://localhost:8080/auth/realms/heroesofempires/protocol/openid-connect/token");
+           oReq.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+           oReq.responseType="json";
+           var data = "redirect_uri=http://localhost:8084/heroui/index.html&grant_type=authorization_code&client_id=account&code=" + get("code") + "";
+    oReq.send(data);   
+}
+
+        function getData(){
+                   var oReq = new XMLHttpRequest();
+                   oReq.addEventListener("load", fuggveny);
+                   oReq.open("GET", "http://localhost:8081/hero");
+                   oReq.setRequestHeader("Authorization", "Bearer " + token);           
+                   oReq.responseType="json";  
+                 //  oReq.setRequestHeader("Content-type","multipart/form-data");
+                    oReq.send();   
+        }
+
+        function fuggveny () {
+            console.log("HERO:"+this.response);
+        }
+
+    </script>
+  </head>
+
+  <body>
+http://localhost:8080/auth/realms/heroesofempires/protocol/openid-connect/auth?client_id=account&redirect_uri=http://localhost:8084/heroui/index.html&response_type=code&scope=openid
+<button onclick="Login()">GET TOKEN</button>
+<button onclick="getData()">GET Heroes</button>
+  </body>
+</html>
+
