@@ -9,6 +9,8 @@
         <module>hero</module>
         <module>species</module>
         <module>herospecies</module>
+        <module>stable</module>
+        <module>mount</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
