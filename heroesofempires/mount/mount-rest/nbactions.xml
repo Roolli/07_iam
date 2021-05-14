@@ -7,7 +7,7 @@
                 <goal>wildfly-swarm:run</goal>
             </goals>
             <properties>
-                <swarm.port.offset>1</swarm.port.offset>
+                <swarm.port.offset>423</swarm.port.offset>
                 <swarm.ds.name>hoeds</swarm.ds.name>
                 <swarm.ds.username>hoe</swarm.ds.username>
                 <swarm.ds.password>hoe</swarm.ds.password>
@@ -21,7 +21,7 @@
                 <goal>docker:build</goal>
             </goals>
             <properties>
-                <swarm.port.offset>1</swarm.port.offset>
+                <swarm.port.offset>423</swarm.port.offset>
                 <swarm.ds.name>hoeds</swarm.ds.name>
                 <swarm.ds.username>hoe</swarm.ds.username>
                 <swarm.ds.password>hoe</swarm.ds.password>
@@ -34,7 +34,7 @@
                 <packaging>war</packaging>
             </packagings>
             <properties>
-                <swarm.port.offset>1</swarm.port.offset>
+                <swarm.port.offset>423</swarm.port.offset>
                 <swarm.ds.name>hoeds</swarm.ds.name>
                 <swarm.ds.username>hoe</swarm.ds.username>
                 <swarm.ds.password>hoe</swarm.ds.password>

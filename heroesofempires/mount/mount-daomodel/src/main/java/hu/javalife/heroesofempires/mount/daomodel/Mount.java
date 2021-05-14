@@ -24,7 +24,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="mount")
 @NamedQueries({
-    @NamedQuery(name = "Mount.name",query = "Select m from mount where m.name=:name ORDER BY m.name")
+    @NamedQuery(name = "Mount.name",query = "Select m from Mount m where m.name=:name ORDER BY m.name")
 })
 public class Mount {
     @Id

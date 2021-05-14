@@ -1,7 +1,7 @@
 {
   "realm": "heroesofempires",
   "auth-server-url": "http://localhost:8080/auth",
-  "ssl-required": "external",
+  "ssl-required": "none",
   "resource": "account",
   "public-client": true,
   "use-resource-role-mappings": true

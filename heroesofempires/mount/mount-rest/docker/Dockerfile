@@ -1,6 +1,6 @@
 FROM mariadb:bionic
 
-ADD hero-swarm.jar /opt/wildfly-swarm.jar
+ADD mount-swarm.jar /opt/wildfly-swarm.jar
 
 RUN apt-get update
 RUN apt-get -y install software-properties-common

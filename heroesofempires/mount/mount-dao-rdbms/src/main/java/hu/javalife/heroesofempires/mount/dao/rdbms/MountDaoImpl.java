@@ -54,7 +54,7 @@ public class MountDaoImpl implements MountDao {
 
     @Override
     public List<Mount> getAll() {
-        return em.createQuery("Select m from mount m").getResultList();
+        return em.createQuery("Select m from Mount m").getResultList();
     }
 
     @Override
