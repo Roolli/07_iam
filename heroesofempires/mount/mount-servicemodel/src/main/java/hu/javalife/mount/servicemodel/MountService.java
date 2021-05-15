@@ -23,6 +23,7 @@ public interface MountService {
 
     public Mount getById(long mountId) throws MountException;
     public Mount getByName(String mountName) throws MountException;
+    public Mount getByHeroId(long heroId) throws MountException;
     public Mount modify(long mId,Mount editedMount) throws MountException;
     public void delete(long mId) throws MountException;
     public List<Mount> search(int start,int count, Mount predicate, String sortField,String sortDirection);            

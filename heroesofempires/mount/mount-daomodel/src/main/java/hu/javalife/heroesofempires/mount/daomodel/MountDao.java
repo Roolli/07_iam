@@ -16,6 +16,8 @@ public interface MountDao {
     public Mount modify(long id, Mount edited);
 
     public Mount getById(long id);
+    
+    public Mount getByHeroId(long heroId);
 
     public Mount getByName(String id);
 

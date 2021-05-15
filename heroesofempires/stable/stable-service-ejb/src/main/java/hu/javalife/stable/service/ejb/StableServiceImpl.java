@@ -7,8 +7,12 @@ package hu.javalife.stable.service.ejb;
 
 import hu.javalife.heroesofempires.hero.datamodel.Hero;
 import hu.javalife.heroesofempires.mount.daomodel.Mount;
+import hu.javalife.heroesofempires.stable.servicemodel.MountIsInStableException;
+import hu.javalife.heroesofempires.stable.servicemodel.MountIsNotInStableException;
 import hu.javalife.heroesofempires.stable.servicemodel.StableException;
+import hu.javalife.heroesofempires.stable.servicemodel.StableIsFullException;
 import hu.javalife.heroesofempires.stable.servicemodel.StableService;
+import javax.ejb.Stateful;
 import javax.ejb.Stateless;
 
 
@@ -22,9 +26,10 @@ import javax.ws.rs.core.MediaType;
  *
  * @author Roolli
  */
-@Stateless
+@Stateful
 public class StableServiceImpl implements StableService {
-
+    private int currentCapacity;
+    private static final int MAX_CAPACITY = 10;
     private final String heroAddress;
     private final String heroPort;
     private final String mountAddress;
@@ -39,7 +44,7 @@ public class StableServiceImpl implements StableService {
     
    
     
-    private Hero getHero(String token,long id) {
+    private Hero getHero(String token,long id) throws StableException{
         Client client = ClientBuilder.newClient();
         
         WebTarget target = client.target("http://" +this.heroAddress + ":" + this.heroPort+"/").path("hero/" + id);
@@ -75,9 +80,40 @@ public class StableServiceImpl implements StableService {
     }
 
     @Override
-    public void ProcessStableAction(String token, long heroId, long mountId) {
-        Hero h = getHero(token, heroId);
+    public void StoreMount(String token, long heroId, long mountId)throws StableException {
+         Hero h = getHero(token, heroId);
         Mount m = getMount(token,mountId);
+        if(m.IsInStable())
+        {
+            throw new MountIsInStableException();
+        }
+        if(this.currentCapacity < MAX_CAPACITY ){
+            if(h.getId() == m.getHeroId())
+            {
+                m.setIsInStable(true);
+            this.currentCapacity++;
+            }
+            else throw new StableException();
+        }
+        else {
+            throw new  StableIsFullException();
+        }
         
     }
+
+    @Override
+    public void TakeMount(String token, long heroId, long mountId) throws StableException {
+         Hero h = getHero(token, heroId);
+        Mount m = getMount(token,mountId);
+        if(!m.IsInStable())
+        {
+            throw new MountIsNotInStableException();
+        }
+        if( h.getId() == m.getHeroId()){            
+            m.setIsInStable(false);
+            this.currentCapacity--;
+        }
+        else throw new StableException();
+    }
+
 }

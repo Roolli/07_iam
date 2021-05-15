@@ -72,13 +72,16 @@ public class MountRes {
     public Response add(@Context SecurityContext ctx, @ApiParam(value = "Name of mount", required = true) @FormParam("name") String mName,
             @ApiParam(value = "Type of mount", required = true) @FormParam("mountType") MountType mType,
             @ApiParam(value = "CarryingCapacity of mount", required = true) @FormParam("carryingCapacity") int capacity,
-            @ApiParam(value = "Speed of mount", required = true) @FormParam("speed") int speed
+            @ApiParam(value = "Speed of mount", required = true) @FormParam("speed") int speed,
+            @ApiParam(value=  "Hero ID",required=true) @FormParam("heroId") long heroId
     ) {
         Mount m = new Mount();
         m.setCarryingCapacity(capacity);
         m.setMaxSpeed(speed);
         m.setName(mName);
         m.setMountType(mType);
+        m.setIsInStable(false);
+        m.setHeroId(heroId);
         try {
             return Response.ok(service.add(m)).build();
         } catch (MountException e) {

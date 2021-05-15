@@ -24,7 +24,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name="mount")
 @NamedQueries({
-    @NamedQuery(name = "Mount.name",query = "Select m from Mount m where m.name=:name ORDER BY m.name")
+    @NamedQuery(name = "Mount.name",query = "Select m from Mount m where m.name=:name ORDER BY m.name"),
+        @NamedQuery(name= "Mount.heroId", query="Select m FROM Mount m WHERE m.heroId=:heroId")
 })
 public class Mount {
     @Id
@@ -34,6 +35,26 @@ public class Mount {
     private int maxSpeed;
     @Enumerated(EnumType.STRING)
     private MountType mountType;
+    private boolean inStable;
+    private String name;
+    private Long heroId;
+
+    public Long getHeroId() {
+        return heroId;
+    }
+
+    public void setHeroId(Long heroId) {
+        this.heroId = heroId;
+    }
+    
+    public boolean IsInStable() {
+        return inStable;
+    }
+
+    public void setIsInStable(boolean isInStable) {
+        this.inStable = isInStable;
+    }
+    
 
     @Override
     public int hashCode() {
@@ -99,5 +120,5 @@ public class Mount {
     public void setName(String name) {
         this.name = name;
     }
-    private String name;
+
 }

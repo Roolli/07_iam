@@ -6,8 +6,8 @@
         <artifactId>stable</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-     <groupId>hu.javalife.heroesofempires.stable</groupId>
     <artifactId>stable-service-ejb</artifactId>
+    <groupId>hu.javalife.heroesofempires.stable</groupId>
     <packaging>jar</packaging>
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>

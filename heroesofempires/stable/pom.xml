@@ -10,8 +10,6 @@
     <artifactId>stable</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>stable-daomodel</module>
-        <module>stable-dao-rdbms</module>
         <module>stable-rest</module>
         <module>stable-service-ejb</module>
         <module>stable-servicemodel</module>

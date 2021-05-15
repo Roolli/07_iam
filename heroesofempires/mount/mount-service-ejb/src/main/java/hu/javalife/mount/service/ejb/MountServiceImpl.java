@@ -85,4 +85,9 @@ public class MountServiceImpl implements MountService {
         return dao.get(start, count, predicate, sortField, sortField);
     }
 
+    @Override
+    public Mount getByHeroId(long heroId) throws MountException {
+       return dao.getByHeroId(heroId);
+    }
+
 }

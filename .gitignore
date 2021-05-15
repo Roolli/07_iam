@@ -19,3 +19,5 @@
 /heroesofempires/mount/mount-service-ejb/target/
 /heroesofempires/hero/heroui/target/
 /heroesofempires/mount/mount-dao-rdbms/target/
+/heroesofempires/stable/stable-service-ejb/target/
+/heroesofempires/stable/stable-servicemodel/target/

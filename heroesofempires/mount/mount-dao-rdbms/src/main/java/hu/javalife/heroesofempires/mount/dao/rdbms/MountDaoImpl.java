@@ -33,6 +33,8 @@ public class MountDaoImpl implements MountDao {
         m.setCarryingCapacity(edited.getCarryingCapacity());
         m.setMaxSpeed(edited.getMaxSpeed());
         m.setMountType(edited.getMountType());
+        m.setIsInStable(edited.IsInStable());
+        m.setHeroId(edited.getHeroId());
         em.merge(m);
         return m;
     }
@@ -40,6 +42,11 @@ public class MountDaoImpl implements MountDao {
     @Override
     public Mount getById(long id) {
         return em.find(Mount.class, id);
+    }
+    @Override
+    public Mount getByHeroId(long heroId)
+    {
+        return (Mount) em.createNamedQuery("Mount.heroId").setParameter("heroId", heroId).getSingleResult();
     }
 
     @Override
